@@ -1,0 +1,5 @@
+<h1>products</h1>
+
+@for (product of products(); track product.id) {
+  <p (click)="select.emit(product)">{{ product }}</p>
+}
