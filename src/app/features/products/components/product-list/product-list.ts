@@ -1,13 +1,20 @@
-import { Component, input, output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Products } from '../../../../core/models/product';
+import { Component, input, output, signal } from '@angular/core';
+import { Product } from '../../../../core/models/product';
+
 @Component({
   selector: 'app-product-list',
-  imports: [CommonModule],
-  templateUrl: './product-list.html',
-  styleUrl: './product-list.css',
+  standalone: true,
+  template: `
+    <h2>Productos</h2>
+
+    @for (product of products(); track product.id) {
+      <p (click)="select.emit(product)">
+        {{ product.name }}
+      </p>
+    }
+  `,
 })
 export class ProductList {
-  products = input<Products[]>();
-  select = output<Products>();
+  products = input<Product[]>([]);
+  select = output<Product>();
 }

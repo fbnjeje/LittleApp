@@ -1,1 +1,3 @@
-<app-product-detail></app-product-detail>
+<app-product-list [products]="products()" (select)="selected.set($event)" />
+
+<app-product-detail [product]="selected()" />

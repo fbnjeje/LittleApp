@@ -1,12 +1,13 @@
-import { signal } from '@angular/core';
-import { Products } from '../models/product';
+import { Injectable, signal } from '@angular/core';
+import { Product } from './../models/product';
 
-export class ProductServices {
-  private readonly _products = signal<Products[]>([
-    { id: 1, name: 'el mejor del mundo', price: 200 },
+@Injectable({ providedIn: 'root' })
+export class ProductsService {
+  private readonly _products = signal<Product[]>([
+    { id: 1, name: 'Pedro Pascal', price: 12390 },
+    { id: 2, name: 'Triline', price: 1230 },
+    { id: 3, name: 'George Harrison', price: 0 },
   ]);
 
-  getProducts() {
-    return this._products;
-  }
+  products = this._products.asReadonly();
 }
